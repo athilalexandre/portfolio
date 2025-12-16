@@ -8,11 +8,11 @@ const Footer: React.FC = () => {
         <p className="text-slate-500 flex items-center justify-center gap-2 mb-2">
           Desenvolvido com <Heart size={16} className="text-red-500 fill-red-500" /> por Athila Alexandre &copy; {new Date().getFullYear()}
         </p>
-        <a 
-            href="https://github.com/athilalexandre/portfolio-v2" 
-            className="text-slate-600 text-sm hover:text-brand-primary transition-colors"
+        <a
+          href="https://github.com/athilalexandre/portfolio"
+          className="text-slate-600 text-sm hover:text-brand-primary transition-colors"
         >
-            Ver código fonte deste portfólio
+          Ver código fonte deste portfólio
         </a>
       </div>
     </footer>
