@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { GitHubRepo } from '../types';
 import { fetchRepos } from '../services/githubService';
-import { Github, ExternalLink, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Github,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+  Code2,
+  FileType,
+  FileJson,
+  Palette,
+  Terminal,
+  Gamepad2,
+  Globe
+} from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -21,8 +33,23 @@ const Projects: React.FC = () => {
     getRepos();
   }, []);
 
+  const getProjectIcon = (lang: string | null, topics: string[]) => {
+    if (topics.includes('game') || topics.includes('games') || topics.includes('game-dev')) return <Gamepad2 size={40} />;
+    if (topics.includes('ai') || topics.includes('python')) return <Terminal size={40} />;
+    if (topics.includes('css') || topics.includes('html') || topics.includes('ui')) return <Palette size={40} />;
+
+    switch (lang?.toLowerCase()) {
+      case 'typescript': return <FileType size={40} />;
+      case 'javascript': return <FileJson size={40} />;
+      case 'html':
+      case 'css': return <Palette size={40} />;
+      case 'python': return <Terminal size={40} />;
+      default: return <Code2 size={40} />;
+    }
+  };
+
   return (
-    <section id="projetos" className="py-20 bg-slate-800/30">
+    <section id="projetos" className="py-20 bg-slate-900">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>
@@ -42,22 +69,22 @@ const Projects: React.FC = () => {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="bg-slate-800 h-64 rounded-xl"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-pulse">
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="bg-slate-800 h-48 rounded-xl"></div>
             ))}
           </div>
         ) : (
-          <div className="relative group">
+          <div className="relative group px-4">
             {/* Navigation Buttons */}
             <button
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-brand-primary/90 hover:bg-brand-primary rounded-full flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 disabled:opacity-30"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-8 z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800"
               aria-label="Projeto anterior"
             >
               <ChevronLeft size={24} />
             </button>
             <button
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-brand-primary/90 hover:bg-brand-primary rounded-full flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 disabled:opacity-30"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-8 z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800"
               aria-label="Próximo projeto"
             >
               <ChevronRight size={24} />
@@ -65,7 +92,7 @@ const Projects: React.FC = () => {
 
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={24}
+              spaceBetween={20}
               slidesPerView={1}
               navigation={{
                 prevEl: '.swiper-button-prev-custom',
@@ -73,87 +100,76 @@ const Projects: React.FC = () => {
               }}
               pagination={{
                 clickable: true,
-                bulletClass: 'swiper-pagination-bullet !bg-slate-600 !opacity-100',
-                bulletActiveClass: '!bg-brand-primary !scale-125',
+                dynamicBullets: true,
               }}
               autoplay={{
-                delay: 5000,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
-              loop={repos.length > 3}
+              loop={true}
               breakpoints={{
                 640: {
                   slidesPerView: 2,
                 },
-                1024: {
+                768: {
                   slidesPerView: 3,
                 },
+                1024: {
+                  slidesPerView: 4,
+                },
               }}
-              className="!pb-12"
+              className="!pb-14"
             >
               {repos.map((repo) => (
-                <SwiperSlide key={repo.id}>
-                  <div
-                    className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 flex flex-col hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2 transition-all duration-300 h-full"
+                <SwiperSlide key={repo.id} className="h-auto">
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
                   >
-                    {/* Card Header with gradient */}
-                    <div className="h-2 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent"></div>
+                    <div
+                      className="bg-slate-800/50 hover:bg-slate-800 p-6 rounded-xl border border-slate-700/50 hover:border-brand-primary transition-all duration-300 flex flex-col items-center justify-center group h-full text-center relative overflow-hidden"
+                    >
+                      <div className="mb-4 text-slate-400 group-hover:text-brand-primary transition-colors transform group-hover:scale-110 duration-300">
+                        {getProjectIcon(repo.language, repo.topics)}
+                      </div>
 
-                    <div className="p-6 flex-1 flex flex-col">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-bold text-white truncate pr-2" title={repo.name}>
-                          {repo.name}
-                        </h3>
-                        <div className="flex gap-3 text-slate-400 flex-shrink-0">
+                      <h3 className="text-white font-semibold text-lg mb-2 line-clamp-1 w-full px-2" title={repo.name}>
+                        {repo.name}
+                      </h3>
+
+                      {repo.language && (
+                        <span className="text-xs uppercase tracking-wider text-slate-500 bg-slate-900/80 px-3 py-1 rounded-full border border-slate-700/50 mb-3">
+                          {repo.language}
+                        </span>
+                      )}
+
+                      {/* Hover Overlay with Links - Visible on Hover (Desktop) or Always (Mobile if needed) */}
+                      <div className="absolute inset-0 bg-slate-900/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                        <p className="text-slate-300 text-sm mb-4 line-clamp-3">
+                          {repo.description || "Projeto público no GitHub"}
+                        </p>
+                        <div className="flex gap-4">
+                          <span className="text-white flex items-center gap-2 font-medium hover:text-brand-primary transition-colors">
+                            <Github size={18} /> Código
+                          </span>
                           {repo.homepage && (
-                            <a
-                              href={repo.homepage}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-brand-accent transition-colors"
-                              title="Ver Demo"
+                            <span
+                              className="text-white flex items-center gap-2 font-medium hover:text-brand-accent transition-colors"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                window.open(repo.homepage!, '_blank');
+                              }}
                             >
-                              <ExternalLink size={20} />
-                            </a>
+                              <Globe size={18} /> Demo
+                            </span>
                           )}
-                          <a
-                            href={repo.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-white transition-colors"
-                            title="Ver Código"
-                          >
-                            <Github size={20} />
-                          </a>
-                        </div>
-                      </div>
-
-                      <p className="text-slate-400 text-sm mb-6 line-clamp-3 flex-grow">
-                        {repo.description || "Sem descrição disponível."}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {repo.language && (
-                          <span className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded-md border border-slate-600">
-                            {repo.language}
-                          </span>
-                        )}
-                        {repo.topics.slice(0, 3).map(topic => (
-                          <span key={topic} className="px-2 py-1 bg-slate-900/50 text-brand-primary text-xs rounded-md border border-brand-primary/20">
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-4 text-slate-500 text-sm mt-auto border-t border-slate-700 pt-4">
-                        <div className="flex items-center gap-1">
-                          <Star size={14} className="text-yellow-500" />
-                          <span>{repo.stargazers_count}</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </SwiperSlide>
               ))}
             </Swiper>

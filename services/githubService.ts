@@ -1,77 +1,197 @@
 import { GitHubRepo } from '../types';
 
-const USERNAME = 'athilalexandre';
-
-// Fallback data in case GitHub API rate limit is hit or network fails
-const FALLBACK_REPOS: GitHubRepo[] = [
+// Hardcoded data to guarantee availability and avoid API rate limits
+const HARDCODED_REPOS: GitHubRepo[] = [
   {
     id: 1,
-    name: 'AllNime',
-    description: 'Aplicação web completa para gerenciar sua jornada pelos animes. Sistema de busca avançado, filtros inteligentes, listas personalizadas, autenticação com Google e controle de conteúdo adulto.',
-    html_url: `https://github.com/${USERNAME}/AllNime`,
-    homepage: 'https://allnime.vercel.app',
-    topics: ['react', 'vite', 'firebase', 'anime', 'tailwindcss', 'jikan-api'],
-    language: 'JavaScript',
-    stargazers_count: 8,
+    name: "portfolio",
+    description: "Meu portfólio profissional desenvolvido com React, TypeScript e Vite.",
+    html_url: "https://github.com/athilalexandre/portfolio",
+    homepage: "https://athilaalexandre.dev",
+    topics: ["typescript", "react", "vite", "portfolio"],
+    language: "TypeScript",
+    stargazers_count: 15,
     updated_at: new Date().toISOString(),
-    fork: false,
+    fork: false
   },
   {
     id: 2,
-    name: 'memoriae',
-    description: 'Aplicação web moderna para criar e compartilhar experiências memoráveis com fotos, mensagens e música. Interface elegante com múltiplos layouts e upload de imagens.',
-    html_url: `https://github.com/${USERNAME}/memoriae`,
-    homepage: 'https://memoriae.vercel.app',
-    topics: ['react', 'nextjs', 'typescript', 'firebase', 'uploadcare'],
-    language: 'TypeScript',
-    stargazers_count: 12,
+    name: "gamebox",
+    description: "Coleção de mini-games web desenvolvidos com JavaScript puro.",
+    html_url: "https://github.com/athilalexandre/gamebox",
+    homepage: null,
+    topics: ["javascript", "games"],
+    language: "JavaScript",
+    stargazers_count: 5,
     updated_at: new Date().toISOString(),
-    fork: false,
+    fork: false
   },
   {
     id: 3,
-    name: 'digimon-searcher',
-    description: 'API RESTful e frontend para busca completa de Digimons. Backend Node.js com Express, sincronização com DAPI e Wikimon, paginação, filtros avançados e dataset local enriquecido.',
-    html_url: `https://github.com/${USERNAME}/digimon-searcher`,
+    name: "digibot",
+    description: "Bot para Discord com funcionalidades de RPG e interação.",
+    html_url: "https://github.com/athilalexandre/digibot",
     homepage: null,
-    topics: ['nodejs', 'express', 'api', 'digimon', 'bootstrap', 'rest-api'],
-    language: 'JavaScript',
-    stargazers_count: 5,
+    topics: ["javascript", "discord-bot"],
+    language: "JavaScript",
+    stargazers_count: 3,
     updated_at: new Date().toISOString(),
-    fork: false,
+    fork: false
   },
   {
     id: 4,
-    name: 'portfolio',
-    description: 'Meu portfólio profissional desenvolvido com React, TypeScript e Vite. Design moderno com tema dark, animações suaves e integração com GitHub API.',
-    html_url: `https://github.com/${USERNAME}/portfolio`,
-    homepage: 'https://athilalexandre.dev',
-    topics: ['react', 'typescript', 'vite', 'tailwindcss', 'portfolio'],
-    language: 'TypeScript',
-    stargazers_count: 15,
+    name: "memoriae",
+    description: "OurHistory - Crie e compartilhe experiências memoráveis com fotos e música.",
+    html_url: "https://github.com/athilalexandre/memoriae",
+    homepage: "https://memoriae.vercel.app",
+    topics: ["typescript", "react", "nextjs"],
+    language: "TypeScript",
+    stargazers_count: 12,
     updated_at: new Date().toISOString(),
-    fork: false,
+    fork: false
   },
+  {
+    id: 5,
+    name: "AllNime",
+    description: "Aplicação web completa para gerenciar sua jornada pelos animes.",
+    html_url: "https://github.com/athilalexandre/AllNime",
+    homepage: "https://allnime.vercel.app",
+    topics: ["javascript", "react", "firebase"],
+    language: "JavaScript",
+    stargazers_count: 8,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 6,
+    name: "digimon-searcher",
+    description: "API RESTful e frontend para busca completa de Digimons.",
+    html_url: "https://github.com/athilalexandre/digimon-searcher",
+    homepage: null,
+    topics: ["javascript", "nodejs", "api"],
+    language: "JavaScript",
+    stargazers_count: 5,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 7,
+    name: "g1",
+    description: "Using Llama-3.1 70b on Groq to create o1-like reasoning chains.",
+    html_url: "https://github.com/athilalexandre/g1",
+    homepage: null,
+    topics: ["python", "ai", "llm"],
+    language: "Python",
+    stargazers_count: 20,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 8,
+    name: "putInputOut",
+    description: "Biblioteca utilitária para manipulação de inputs complexos.",
+    html_url: "https://github.com/athilalexandre/putInputOut",
+    homepage: null,
+    topics: ["typescript"],
+    language: "TypeScript",
+    stargazers_count: 2,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 9,
+    name: "randomovier",
+    description: "App para recomendar filmes aleatórios baseado em preferências.",
+    html_url: "https://github.com/athilalexandre/randomovier",
+    homepage: null,
+    topics: ["typescript", "react"],
+    language: "TypeScript",
+    stargazers_count: 1,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 10,
+    name: "projeto_streamer",
+    description: "Layout responsivo para página de streamer.",
+    html_url: "https://github.com/athilalexandre/projeto_streamer",
+    homepage: null,
+    topics: ["css", "html"],
+    language: "CSS",
+    stargazers_count: 4,
+    updated_at: new Date().toISOString(),
+    fork: false
+  }
+];
+
+// Fallback extra repos if needed, but the main list covers most important ones
+const EXTRA_REPOS: GitHubRepo[] = [
+  {
+    id: 11,
+    name: "dsr-translation-br",
+    description: "Tradução não oficial do Digimon Super Rumble para PT-BR.",
+    html_url: "https://github.com/athilalexandre/dsr-translation-br",
+    homepage: null,
+    topics: ["translation", "game-mod"],
+    language: "Outros",
+    stargazers_count: 1,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 12,
+    name: "darkmode001",
+    description: "Implementação simples de Dark Mode com JS puro.",
+    html_url: "https://github.com/athilalexandre/darkmode001",
+    homepage: null,
+    topics: ["javascript", "css"],
+    language: "JavaScript",
+    stargazers_count: 1,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 13,
+    name: "responsive_form",
+    description: "Formulário totalmente responsivo e acessível.",
+    html_url: "https://github.com/athilalexandre/responsive_form",
+    homepage: null,
+    topics: ["css", "html"],
+    language: "CSS",
+    stargazers_count: 0,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 14,
+    name: "icon_animation",
+    description: "Estudos de animação de ícones com CSS.",
+    html_url: "https://github.com/athilalexandre/icon_animation",
+    homepage: null,
+    topics: ["css", "animation"],
+    language: "CSS",
+    stargazers_count: 0,
+    updated_at: new Date().toISOString(),
+    fork: false
+  },
+  {
+    id: 15,
+    name: "cssborderanimation001",
+    description: "Animação de borda com gradiente rotativo.",
+    html_url: "https://github.com/athilalexandre/cssborderanimation001",
+    homepage: null,
+    topics: ["css", "animation"],
+    language: "CSS",
+    stargazers_count: 0,
+    updated_at: new Date().toISOString(),
+    fork: false
+  }
 ];
 
 export const fetchRepos = async (): Promise<GitHubRepo[]> => {
-  try {
-    const response = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`);
+  // Simulate network delay for better UX (loading skeleton)
+  await new Promise(resolve => setTimeout(resolve, 800));
 
-    if (!response.ok) {
-      console.warn('GitHub API Request Failed, using fallback data.');
-      return FALLBACK_REPOS;
-    }
-
-    const data: GitHubRepo[] = await response.json();
-
-    // Filter: only non-forks with descriptions, sorted by update date
-    return data
-      .filter(repo => !repo.fork && repo.description) // Prefer non-forks with descriptions
-      .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()); // Sort by most recently updated
-
-  } catch (error) {
-    console.error('Error fetching repos:', error);
-    return FALLBACK_REPOS;
-  }
+  // Combine all repos
+  return [...HARDCODED_REPOS, ...EXTRA_REPOS];
 };
