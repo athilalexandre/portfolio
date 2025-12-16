@@ -57,20 +57,19 @@ const FALLBACK_REPOS: GitHubRepo[] = [
 export const fetchRepos = async (): Promise<GitHubRepo[]> => {
   try {
     const response = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`);
-    
+
     if (!response.ok) {
       console.warn('GitHub API Request Failed, using fallback data.');
       return FALLBACK_REPOS;
     }
 
     const data: GitHubRepo[] = await response.json();
-    
-    // Filter and sort
+
+    // Filter: only non-forks with descriptions, sorted by update date
     return data
       .filter(repo => !repo.fork && repo.description) // Prefer non-forks with descriptions
-      .sort((a, b) => b.stargazers_count - a.stargazers_count) // Sort by stars
-      .slice(0, 6); // Take top 6
-      
+      .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()); // Sort by most recently updated
+
   } catch (error) {
     console.error('Error fetching repos:', error);
     return FALLBACK_REPOS;
