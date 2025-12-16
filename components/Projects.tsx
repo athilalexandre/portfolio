@@ -75,16 +75,16 @@ const Projects: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="relative group px-4">
+          <div className="relative group/carousel px-4 md:px-12">
             {/* Navigation Buttons */}
             <button
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-8 z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-[calc(50%+1.5rem)] z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800 opacity-0 group-hover/carousel:opacity-100"
               aria-label="Projeto anterior"
             >
               <ChevronLeft size={24} />
             </button>
             <button
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-8 z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-[calc(50%+1.5rem)] z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800 opacity-0 group-hover/carousel:opacity-100"
               aria-label="Próximo projeto"
             >
               <ChevronRight size={24} />
@@ -130,9 +130,9 @@ const Projects: React.FC = () => {
                     className="block h-full"
                   >
                     <div
-                      className="bg-slate-800/50 hover:bg-slate-800 p-6 rounded-xl border border-slate-700/50 hover:border-brand-primary transition-all duration-300 flex flex-col items-center justify-center group h-full text-center relative overflow-hidden"
+                      className="bg-slate-800/50 hover:bg-slate-800 p-6 rounded-xl border border-slate-700/50 hover:border-brand-primary transition-all duration-300 flex flex-col items-center justify-center group/card h-full text-center relative overflow-hidden"
                     >
-                      <div className="mb-4 text-slate-400 group-hover:text-brand-primary transition-colors transform group-hover:scale-110 duration-300">
+                      <div className="mb-4 text-slate-400 group-hover/card:text-brand-primary transition-colors transform group-hover/card:scale-110 duration-300">
                         {getProjectIcon(repo.language, repo.topics)}
                       </div>
 
@@ -147,7 +147,7 @@ const Projects: React.FC = () => {
                       )}
 
                       {/* Hover Overlay with Links - Visible on Hover (Desktop) or Always (Mobile if needed) */}
-                      <div className="absolute inset-0 bg-slate-900/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                      <div className="absolute inset-0 bg-slate-900/90 flex flex-col items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 p-4">
                         <p className="text-slate-300 text-sm mb-4 line-clamp-3">
                           {repo.description || "Projeto público no GitHub"}
                         </p>
