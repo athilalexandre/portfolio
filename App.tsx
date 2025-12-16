@@ -12,11 +12,10 @@ import { ProfileData } from './types';
 // ATENÇÃO: Edite aqui os dados principais do perfil se necessário
 const profileData: ProfileData = {
   name: "Athila Alexandre",
-  tagline: "Desenvolvedor Front-End | Game Designer | Entusiasta de IA",
-  phrase: "Transformando ideias em pixels e código desde 2015",
+  tagline: "Desenvolvedor Front-End | Especialista React & TypeScript",
+  phrase: "Criando experiências web modernas que conectam design e tecnologia",
   location: "Fortaleza – CE, Brasil",
-  // Placeholder image. Replace with real URL: https://github.com/athilalexandre.png
-  avatarUrl: "https://github.com/athilalexandre.png", 
+  avatarUrl: "https://github.com/athilalexandre.png",
   bio: "", // Populated in About component for richer HTML structure
   social: {
     github: "https://github.com/athilalexandre",

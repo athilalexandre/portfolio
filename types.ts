@@ -13,8 +13,8 @@ export interface GitHubRepo {
 
 export interface Skill {
   name: string;
-  category: 'Linguagem' | 'Framework' | 'Ferramenta' | 'Outros';
-  iconName: string; 
+  category: 'Linguagem' | 'Framework' | 'Backend' | 'Estilo' | 'Ferramenta' | 'Outros';
+  iconName: string;
 }
 
 export interface ProfileData {

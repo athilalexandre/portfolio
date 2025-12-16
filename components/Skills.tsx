@@ -1,26 +1,31 @@
 import React from 'react';
 import { Skill } from '../types';
-import { 
-  FileJson, 
-  FileType, 
-  Atom, 
-  Server, 
-  Layout, 
-  Box, 
-  Gamepad2, 
-  Cpu
+import {
+  FileJson,
+  FileType,
+  Atom,
+  Server,
+  Layout,
+  Box,
+  Zap,
+  Database,
+  Network,
+  GitBranch
 } from 'lucide-react';
 
 const skills: Skill[] = [
+  { name: 'React.js', category: 'Framework', iconName: 'Atom' },
   { name: 'TypeScript', category: 'Linguagem', iconName: 'FileType' },
   { name: 'JavaScript', category: 'Linguagem', iconName: 'FileJson' },
-  { name: 'React.js', category: 'Framework', iconName: 'Atom' },
   { name: 'Next.js', category: 'Framework', iconName: 'Box' },
-  { name: 'Node.js', category: 'Framework', iconName: 'Server' },
-  { name: 'Tailwind CSS', category: 'Ferramenta', iconName: 'Layout' },
-  { name: 'Python', category: 'Linguagem', iconName: 'Code' }, // Fallback icon
-  { name: 'Game Design', category: 'Outros', iconName: 'Gamepad2' },
-  { name: 'AI Integration', category: 'Outros', iconName: 'Cpu' },
+  { name: 'Node.js', category: 'Backend', iconName: 'Server' },
+  { name: 'Vite', category: 'Ferramenta', iconName: 'Zap' },
+  { name: 'Tailwind CSS', category: 'Estilo', iconName: 'Layout' },
+  { name: 'Firebase', category: 'Backend', iconName: 'Database' },
+  { name: 'REST APIs', category: 'Backend', iconName: 'Network' },
+  { name: 'Git & GitHub', category: 'Ferramenta', iconName: 'GitBranch' },
+  { name: 'Express.js', category: 'Backend', iconName: 'Server' },
+  { name: 'Bootstrap', category: 'Estilo', iconName: 'Layout' },
 ];
 
 const getIcon = (iconName: string) => {
@@ -31,8 +36,10 @@ const getIcon = (iconName: string) => {
     case 'Box': return <Box size={32} />;
     case 'Server': return <Server size={32} />;
     case 'Layout': return <Layout size={32} />;
-    case 'Gamepad2': return <Gamepad2 size={32} />;
-    case 'Cpu': return <Cpu size={32} />;
+    case 'Zap': return <Zap size={32} />;
+    case 'Database': return <Database size={32} />;
+    case 'Network': return <Network size={32} />;
+    case 'GitBranch': return <GitBranch size={32} />;
     default: return <FileJson size={32} />;
   }
 };
@@ -50,7 +57,7 @@ const Skills: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {skills.map((skill) => (
-            <div 
+            <div
               key={skill.name}
               className="bg-slate-800/50 hover:bg-slate-800 p-6 rounded-xl border border-slate-700/50 hover:border-brand-primary transition-all duration-300 flex flex-col items-center justify-center group"
             >
