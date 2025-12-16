@@ -46,7 +46,7 @@ const getIcon = (iconName: string) => {
 
 const Skills: React.FC = () => {
   return (
-    <section id="tecnologias" className="py-10 bg-slate-900">
+    <section id="tecnologias" className="py-10 scroll-mt-28 bg-slate-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tecnologias & Ferramentas</h2>

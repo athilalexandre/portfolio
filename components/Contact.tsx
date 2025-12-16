@@ -8,7 +8,7 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ profile }) => {
   return (
-    <section id="contato" className="py-10 bg-slate-900 relative">
+    <section id="contato" className="py-10 scroll-mt-28 bg-slate-900 relative">
       {/* Decorative elements */}
       <div className="absolute left-10 top-1/2 w-32 h-32 bg-brand-secondary/10 rounded-full blur-[50px] pointer-events-none"></div>
 

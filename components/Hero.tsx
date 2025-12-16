@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ profile }) => {
   return (
-    <section id="inicio" className="min-h-[85vh] flex items-center justify-center pt-20 relative overflow-hidden">
+    <section id="inicio" className="min-h-[85vh] scroll-mt-28 flex items-center justify-center pt-20 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-brand-primary/20 rounded-full blur-[100px] -z-10"></div>
       <div className="absolute bottom-20 left-0 w-72 h-72 bg-brand-accent/10 rounded-full blur-[80px] -z-10"></div>
