@@ -8,7 +8,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ profile }) => {
   return (
-    <section id="sobre" className="py-20 bg-slate-900/50">
+    <section id="sobre" className="py-10 bg-slate-900/50">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
 

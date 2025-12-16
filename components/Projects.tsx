@@ -49,7 +49,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projetos" className="py-20 bg-slate-900">
+    <section id="projetos" className="py-12 bg-slate-900">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>
@@ -75,7 +75,7 @@ const Projects: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="relative group/carousel px-4 md:px-12">
+          <div className="relative group/carousel px-12 md:px-20">
             {/* Navigation Buttons */}
             <button
               className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-[calc(50%+1.5rem)] z-10 w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-700 hover:bg-brand-primary hover:border-brand-primary rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 disabled:opacity-30 disabled:hover:bg-slate-800 opacity-0 group-hover/carousel:opacity-100"

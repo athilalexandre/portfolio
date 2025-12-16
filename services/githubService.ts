@@ -188,10 +188,47 @@ const EXTRA_REPOS: GitHubRepo[] = [
   }
 ];
 
-export const fetchRepos = async (): Promise<GitHubRepo[]> => {
-  // Simulate network delay for better UX (loading skeleton)
-  await new Promise(resolve => setTimeout(resolve, 800));
+// Backup list just in case API fails
+const BACKUP_REPOS = [...HARDCODED_REPOS, ...EXTRA_REPOS];
 
-  // Combine all repos
-  return [...HARDCODED_REPOS, ...EXTRA_REPOS];
+const USERNAME = 'athilalexandre';
+
+export const fetchRepos = async (): Promise<GitHubRepo[]> => {
+  try {
+    // 1. Try to fetch from GitHub API (Real-time data)
+    const response = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`);
+
+    if (!response.ok) {
+      throw new Error('GitHub API Request Failed');
+    }
+
+    const data: any[] = await response.json();
+
+    // 2. Filter and map to our format
+    const realTimeData = data
+      .filter(repo => !repo.fork) // Showing only personal projects (source)
+      .map(repo => ({
+        id: repo.id,
+        name: repo.name,
+        description: repo.description,
+        html_url: repo.html_url,
+        homepage: repo.homepage || null,
+        topics: repo.topics || [],
+        language: repo.language || 'Outros',
+        stargazers_count: repo.stargazers_count,
+        updated_at: repo.updated_at,
+        fork: repo.fork
+      }))
+      .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+
+    // If API returns empty (edge case), use backup
+    if (realTimeData.length === 0) return BACKUP_REPOS;
+
+    return realTimeData;
+
+  } catch (error) {
+    console.warn('GitHub API failed or rate limited, using static backup data.', error);
+    // 3. Fallback to hardcoded data if API fails
+    return BACKUP_REPOS;
+  }
 };
